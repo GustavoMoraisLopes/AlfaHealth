@@ -1,0 +1,25 @@
+
+name: ALFAS CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality:
+    name: Basic quality checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check repository structure
+        run: |
+          test -f README.md
+          test -f .gitignore
+          test -d frontend
+          test -d backend
+          test -d docs
