@@ -1,0 +1,40 @@
+flowchart TD
+    A([Início]) --> B[Preencher dados de registo]
+    B --> C[Validar email e guardar data de nascimento]
+    C --> D{Email confirmado?}
+
+    D -- Não --> E[Estado: PendenteEmail]
+    E --> F[Aguardar confirmação do email]
+    F --> D
+
+    D -- Sim --> G{Utilizador é menor?}
+    G -- Não --> H[Ativar conta]
+    G -- Sim --> I[Recolher nome e email do encarregado]
+    I --> J[Registar pedido e prazo de validade]
+    J --> K[Enviar email ao encarregado com token de consentimento]
+    K --> L[Estado: PendenteConsentimento]
+    L --> M{Consentimento recebido antes da expiração?}
+    M -- Sim --> N[Registar data do consentimento]
+    N --> H
+    M -- Ainda dentro do prazo --> O[Aguardar resposta ou expiração]
+    O --> M
+    M -- Não, prazo expirou --> P[Apagar conta sem consentimento]
+
+    H --> Q([Estado: Ativo])
+    Q -. Consentimento revogado, só menores .-> R[Registar data da revogação, estado: Bloqueado]
+    R --> S[Enviar novo email ao encarregado com token de consentimento]
+    S --> T[Aguardar novo consentimento, até 30 dias após a revogação]
+    T --> U{Novo consentimento recebido dentro dos 30 dias?}
+    U -- Sim --> V[Registar novo consentimento do novo pedido, estado: Ativo]
+    V --> Q
+    U -- Ainda dentro do prazo --> T
+    U -- Não, prazo expirou --> W[Apagar conta e dados pessoais]
+
+    classDef pending fill:#fff3cd,stroke:#d39e00,color:#222;
+    classDef active fill:#d4edda,stroke:#28a745,color:#222;
+    classDef blocked fill:#fce4d6,stroke:#e67e22,color:#222;
+    classDef delete fill:#f8d7da,stroke:#dc3545,color:#222;
+    class E,L pending;
+    class H,Q,V active;
+    class R blocked;
+    class P,W delete;
