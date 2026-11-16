@@ -1,0 +1,56 @@
+flowchart LR
+  conv["Convidado"]
+  reg["Utilizador Registado"]
+  enc["Encarregado de Educação<br/>(ator externo, por ligação enviada por e-mail)"]
+
+  reg -->|herda de| conv
+
+  subgraph SYS["Sistema ALFAS - Frontoffice"]
+    subgraph G["Convidado"]
+      F1(["Registar conta"])
+      F2(["Verificar endereço de e-mail"])
+      F3(["Autenticar-se"])
+      F4(["Recuperar palavra-passe"])
+      F5(["Consultar destaques da semana"])
+      F6(["Consultar notícias"])
+      F7(["Consultar agenda"])
+      F8(["Consultar biblioteca virtual"])
+      F9(["Consultar recursos por área de saúde"])
+      F10(["Alterar idioma PT/EN"])
+    end
+    subgraph CONS["Consentimento parental"]
+      P1(["Pedir consentimento parental (menores)"])
+      P2(["Confirmar consentimento parental"])
+      P3(["Revogar consentimento parental"])
+    end
+    subgraph U["Utilizador Registado"]
+      R1(["Gerir perfil"])
+      R2(["Terminar sessão"])
+      R3(["Marcar recurso como favorito"])
+      R4(["Inscrever-se num recurso"])
+      R5(["Cancelar inscrição"])
+      R6(["Consultar níveis do recurso e registar progresso"])
+      R7(["Realizar questionário de diagnóstico (pré)"])
+      R8(["Repetir diagnóstico (2.ª oportunidade)"])
+      R9(["Realizar questionário final (pós)"])
+      R10(["Corrigir tentativa e calcular nota 0-100"])
+      R11(["Atribuir conclusão, badge e certificado (nota >= nota mínima, 85 por omissão)"])
+      R12(["Consultar notas e comparação pré/pós"])
+      R13(["Consultar badges e certificados"])
+      R14(["Descarregar certificado"])
+      R15(["Eliminar a própria conta (RGPD)"])
+    end
+  end
+
+  conv --- F1 & F3 & F4 & F5 & F6 & F7 & F8 & F9 & F10
+  reg --- R1 & R2 & R3 & R4 & R5 & R6 & R7 & R9 & R12 & R13 & R15
+  enc --- P2
+  enc --- P3
+
+  F1 -. include .-> F2
+  P1 -. extend .-> F1
+  R7 -. include .-> R10
+  R9 -. include .-> R10
+  R8 -. extend .-> R7
+  R11 -. extend .-> R9
+  R14 -. extend .-> R13
