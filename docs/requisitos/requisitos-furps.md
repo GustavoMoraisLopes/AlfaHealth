@@ -31,6 +31,9 @@ A plataforma ALFAS é uma aplicação web de literacia em saúde destinada a alu
 - RF13 — O sistema deve apresentar estatísticas de utilização e aprendizagem a Manager/Admin.
 - RF14 — O sistema deve permitir exportar respostas e notas em formato CSV.
 - RF15 — O sistema deve disponibilizar os conteúdos em português e inglês.
+- RF16 — O sistema deve permitir que o utilizador adicione e remova recursos dos seus favoritos.
+- RF17 — O sistema deve apresentar os destaques da semana definidos pelo Manager.
+- RF18 — O sistema deve permitir revogar o consentimento parental; após a revogação, a conta fica bloqueada e, se não houver novo consentimento em 30 dias, a conta e os dados pessoais são apagados.
 
 ### 3.2. Usability (Usabilidade)
 
