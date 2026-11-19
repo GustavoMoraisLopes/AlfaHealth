@@ -31,6 +31,10 @@ A plataforma ALFAS é uma aplicação web de literacia em saúde destinada a alu
 - RF13 — O sistema deve apresentar estatísticas de utilização e aprendizagem a Manager/Admin.
 - RF14 — O sistema deve permitir exportar respostas e notas em formato CSV.
 - RF15 — O sistema deve disponibilizar os conteúdos em português e inglês.
+- RF16 — O sistema deve permitir que o utilizador adicione e remova recursos dos seus favoritos.
+- RF17 — O sistema deve apresentar os destaques da semana definidos pelo Manager.
+- RF18 — O sistema deve permitir ao encarregado de educação revogar o consentimento através do link recebido por email e ao Administrador revogá-lo no backoffice. Após a revogação, a conta fica bloqueada; se não houver novo consentimento em 30 dias, a conta e os dados pessoais são apagados.
+- RF19 — O sistema deve permitir ao utilizador eliminar a própria conta e os dados pessoais associados.
 
 ### 3.2. Usability (Usabilidade)
 
@@ -40,9 +44,9 @@ A plataforma ALFAS é uma aplicação web de literacia em saúde destinada a alu
 
 ### 3.3. Reliability (Fiabilidade)
 
-- Que disponibilidade mínima se espera da plataforma?
-- Como devem ser tratados erros ou interrupções durante o preenchimento de um questionário?
-- É necessário guardar automaticamente respostas ainda não submetidas?
+- RNF-R01 — Se a sessão expirar ou o utilizador abandonar o questionário antes de o submeter, a tentativa não deve ter nota nem contar para as estatísticas.
+- RNF-R02 — Se ocorrer um erro ao guardar uma submissão, o sistema não deve guardar uma tentativa parcial; deve manter as respostas no ecrã e permitir nova submissão.
+- RNF-R03 — Depois da submissão, alterações posteriores às respostas corretas do questionário não devem modificar as respostas nem a nota já registadas.
 
 ### 3.4. Performance (Desempenho)
 
@@ -71,13 +75,18 @@ A plataforma ALFAS é uma aplicação web de literacia em saúde destinada a alu
 |---|---|
 | RF01–RF02 | Enunciado do projeto: registo, autenticação e consentimento parental |
 | RF03–RF07 | Enunciado do projeto: webinars/workshops e percurso de aprendizagem pré → materiais → pós |
-| RF08 | Modelo Relacional v1.1: quiz_attempts e attempt_answers |
+| RF08 | Modelo Relacional v1.1: `quiz_attempts` e `attempt_answers` |
 | RF09 | Enunciado do projeto: atribuição de badge e certificado com nota final ≥ 85% |
 | RF10 | Enunciado do projeto: informação disponível no perfil do utilizador |
 | RF11–RF12 | Enunciado do projeto: biblioteca, notícias, agenda e gestão no backoffice |
 | RF13–RF14 | Enunciado do projeto: estatísticas para Manager/Admin e exportação CSV |
 | RF15 / RNF-U02 | Enunciado do projeto e Modelo Relacional v1.1: suporte PT/EN |
+| RF16 | MRD v1.1 (`favorites`) e caso de uso Frontoffice: marcar recurso como favorito |
+| RF17 | MRD v1.1, P7, e casos de uso: gerir e consultar destaques da semana |
+| RF18 | MRD v1.1, P5, mapa RGPD da A016 e casos de uso de consentimento parental |
+| RF19 | Caso de uso Frontoffice: eliminar a própria conta; mapa RGPD da A016 |
 | RNF-U01 / RNF-U03 | Enunciado do projeto: interface clara e responsiva; feedback útil de erros |
+| RNF-R01–RNF-R03 | UC-F09: fluxos alternativos A7 e A10 e regra de negócio 3 |
 | R+01–R+06 | Enunciado/contexto do projeto: tecnologias, arquitetura, segurança e RGPD |
 
 ## 5. Observações e Questões em Aberto
