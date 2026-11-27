@@ -18,8 +18,8 @@ A plataforma disponibiliza formações através de webinars e workshops sobre di
 ## Tecnologias
 
 - Frontend: React
-- Backend: Python e Flask
-- Base de dados: MySQL ou SQL Server
+- Backend: Flask
+- Base de dados: PostgreSQL  
 - Arquitetura: MVC
 
 ## Funcionalidades principais
